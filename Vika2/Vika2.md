@@ -22,46 +22,46 @@
 
 Rakningarvensl lýsa tímaflækju slíkra reiknirita:
 
-\[ T(n) = aT\left(\frac{n}{b}\right) + f(n) \]
+T(n) = aT(n/b) + f(n)
 
 - **a**: Fjöldi undirverkefna.
 - **n/b**: Stærð hvers undirverkefnis.
 - **f(n)**: Kostnaður við að deila og sameina.
 
-### Dæmigerð Dæmi:
-- Tvískipt: \[ T(n) = 2T\left(\frac{n}{2}\right) + f(n) \]
-- Þrískipt: \[ T(n) = 3T\left(\frac{n}{3}\right) + f(n) \]
-- Ójafn skipting: \[ T(n) = T\left(\frac{2n}{3}\right) + T\left(\frac{n}{3}\right) + f(n) \]
+### Dæmi:
+- Tvískipt: T(n) = 2T(n/2) + f(n)
+- Þrískipt: T(n) = 3T(n/3) + f(n)
+- Ójafn skipting: T(n) = T(2n/3) + T(n/3) + f(n)
 
-**Visual dæmi:** Glæra 21 í fyrirlestranótum sýnir dæmi um tvískiptingu með endurkvæmnistré.
+**Visual dæmi:** Glæra 21 í fyrirlestrinum sýnir dæmi um tvískiptingu með endurkvæmnistré.
 
 ---
 
 ## Master Theorem
 
-Master Theorem einfaldar lausn á rakningarvenslum fyrir deila og drottna reiknirit með eftirfarandi skilyrðum:
+Master Theorem einfalda lausn á rakningarvenslum fyrir deila og drottna reiknirit með eftirfarandi skilyrðum:
 
-\[ T(n) = aT\left(\frac{n}{b}\right) + f(n) \]
+T(n) = aT(n/b) + f(n)
 
 - **Ef:**
-    - \( f(n) = O(n^{\log_b a - \varepsilon}) \) (með \( \varepsilon > 0 \)) þá \( T(n) = \Theta(n^{\log_b a}) \).
-    - \( f(n) = \Theta(n^{\log_b a}) \) þá \( T(n) = \Theta(n^{\log_b a} \log n) \).
-    - \( f(n) = \Omega(n^{\log_b a + \varepsilon}) \) (með \( \varepsilon > 0 \)) þá \( T(n) = \Theta(f(n)) \).
+    - f(n) = O(n^(log_b(a) - ε)) (með ε > 0) þá T(n) = Θ(n^(log_b(a))).
+    - f(n) = Θ(n^(log_b(a))) þá T(n) = Θ(n^(log_b(a)) * log(n)).
+    - f(n) = Ω(n^(log_b(a) + ε)) (með ε > 0) þá T(n) = Θ(f(n)).
 
 **Dæmi um greiningu:**
-- \( T(n) = 9T\left(\frac{n}{3}\right) + n \)
-    - \( a = 9, b = 3, f(n) = n \).
-    - \( n^{\log_3 9} = n^2 \).
-    - Hér gildir tilfelli 1 því \( f(n) = O(n^{2-1}) \).
-    - **Tímaflækja:** \( T(n) = \Theta(n^2) \).
+- T(n) = 9T(n/3) + n
+    - a = 9, b = 3, f(n) = n.
+    - n^(log_3(9)) = n^2.
+    - Hér gildir tilfelli 1 því f(n) = O(n^(2-1)).
+    - **Tímaflækja:** T(n) = Θ(n^2).
 
 ---
 
-##  Algeng  Deila og Drottna Reiknirit
+##  Algeng Deila og Drottna Reiknirit
 
 ### 1. Helmingunarleit (Binary Search)
 - **Hugmynd:** Leita í röðuðu fylki með því að útiloka helming staka í hverri ítrun.
-- **Tímaflækja:** \( O(\log n) \).
+- **Tímaflækja:** O(log n).
 - **Endurkvæm útfærsla:**
 ```python
 binary_search(arr, lo, hi, key):
@@ -77,19 +77,19 @@ binary_search(arr, lo, hi, key):
 ```
 
 ### 2. Veldishafning (Exponentiation by Squaring)
-- **Hugmynd:** Nota \( a^n = (a^{n/2})^2 \) ef n er slétt, og \( a^n = a \cdot (a^{n/2})^2 \) ef n er oddatala.
-- **Tímaflækja:** \( O(\log n) \).
+- **Hugmynd:** Nota an = (a^(n/2))^2 ef n er slétt, og an = a * (a^(n/2))^2 ef n er oddatala.
+- **Tímaflækja:** O(log n).
 
 ### 3. Flétturöðun (Merge Sort)
 - **Hugmynd:**
     - Skipta fylki í tvo helminga.
     - Raða hvorn helming endurkvæmt.
     - Sameina (flétta) undirfylki saman.
-- **Tímaflækja:** \( O(n \log n) \).
+- **Tímaflækja:** O(n log n).
 
 ### 4. Karatsuba Margföldun
-- **Hugmynd:** Nota færri margfaldanir með því að reikna \((a+b)(c+d) - ac - bd = ad + bc\).
-- **Tímaflækja:** \( O(n^{\log_2 3}) \approx O(n^{1.585}) \).
+- **Hugmynd:** Nota færri margfaldanir með því að reikna (a+b)(c+d) - ac - bd = ad + bc.
+- **Tímaflækja:** O(n^(log_2(3))) ≈ O(n^1.585).
 
 ---
 
